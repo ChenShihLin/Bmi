@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         binding.help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 //        result.setText("Your BMI is :" + bmi);
         binding.result.setText(getString(R.string.your_bmi_is) + bmi);
 
-        new AlertDialog.Builder(this)
+        /*new AlertDialog.Builder(this)
                 .setTitle("BMI")
                 .setMessage(getString(R.string.your_bmi_is) + bmi)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -74,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
                         binding.result.setText("");
                     }
                 })
-                .show();
+                .show();*/
+
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("BMI", bmi);
+        startActivity(intent);
     }
 }
